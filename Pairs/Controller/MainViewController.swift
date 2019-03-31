@@ -118,7 +118,7 @@ extension MainViewController {
     @IBAction func cardButtonTapped(_ sender: UIButton) {
         guard let cardIndex = cardButtons.firstIndex(of: sender) else { fatalError("Unknown card.") }
         
-        deck.chooseCard(at: cardIndex)
+        deck.chooseCard(at: cardIndex, cardButtons)
         updateCardButtons()
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {

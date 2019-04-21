@@ -6,7 +6,7 @@
 //  Copyright © 2019 Yury Buslovsky. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 
 class Deck {

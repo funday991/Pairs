@@ -11,33 +11,34 @@ import Foundation
 
 struct Card {
     
-    /*------------------------*/
-    // MARK: Static Properties
-    /*------------------------*/
+    private static var lastIdentifier = -1
     
-    static var lastIdentifier = -1
-    
-    static func getUniqueIdentifier() -> Int {
+    private static func getUniqueIdentifier() -> Int {
         lastIdentifier += 1
         return lastIdentifier
     }
     
     
-    /*--------------------------*/
-    // MARK: Internal Properties
-    /*--------------------------*/
-    
-    var id: Int
+    private var id: Int
     var isRevealed = false
     var isMatched = false
 
     
-    /*------------------*/
-    // MARK: Initializer
-    /*------------------*/
-    
     init() {
         id = Card.getUniqueIdentifier()
+    }
+    
+}
+
+
+extension Card: Hashable {
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+    
+    static func ==(lhs: Card, rhs: Card) -> Bool {
+        return lhs.id == rhs.id
     }
     
 }

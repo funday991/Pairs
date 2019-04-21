@@ -21,8 +21,8 @@ class MainViewController: UIViewController {
     
     private var deck: Deck!
     
-    private var emojiList: String!
-    private var emojiDict: CardEmoji!
+    private var availableEmojis: String!
+    private var emojiForCard: CardEmoji!
     
     private var numberOfPairs: Int {
         return cardButtons.count / 2
@@ -45,8 +45,8 @@ extension MainViewController {
         newGameButton.isHidden = true
         
         deck = Deck(numberOfPairs: numberOfPairs)
-        emojiList = Constants.emojiList
-        emojiDict = [Card: String]()
+        availableEmojis = Constants.availableEmojis
+        emojiForCard = [:]
         
         updateCardButtons()
     }
@@ -67,25 +67,18 @@ extension MainViewController {
     }
     
     private func getEmoji(for card: Card) -> String {
-        if emojiDict[card] == nil {
-            let randomIndex = emojiList.index(emojiList.startIndex, offsetBy: emojiList.count.randomLessNumber)
-            emojiDict[card] = String(emojiList.remove(at: randomIndex))
+        if emojiForCard[card] == nil {
+            let randomIndex = availableEmojis.index(availableEmojis.startIndex, offsetBy: availableEmojis.count.randomLessNumber)
+            emojiForCard[card] = String(availableEmojis.remove(at: randomIndex))
         }
         
-        return emojiDict[card] ?? "?"
+        return emojiForCard[card] ?? "?"
     }
     
     private func checkRemainingCards() {
-        var hasUnmatchedCards = false
-        
-        for card in deck.cards where !card.isMatched {
-            hasUnmatchedCards = true
-            break
-        }
-        
-        if !hasUnmatchedCards {
-            self.gameBoard.isHidden = true
-            self.newGameButton.isHidden = false
+        if deck.cards.filter({ !$0.isMatched }).isEmpty {
+            gameBoard.isHidden = true
+            newGameButton.isHidden = false
         }
     }
     

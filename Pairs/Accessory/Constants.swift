@@ -11,6 +11,6 @@ import Foundation
 
 struct Constants {
     
-    static let emojiList = "😀😅🦄🐝🐴🐦🐢🐙🦖🐌🦋🐛🐍🌈🌚💥"
+    static let availableEmojis = "😀😅🦄🐝🐴🐦🐢🐙🦖🐌🦋🐛🐍🌈🌚💥"
     
 }

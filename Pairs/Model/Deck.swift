@@ -11,18 +11,12 @@ import UIKit
 
 class Deck {
     
-    var cards = [Card]()
+    private(set) var cards = [Card]()
     
     private var indexOfRevealedCard: Int? {
-        get {
-            return cards.indices.filter { cards[$0].isRevealed }.oneAndOnly
-        }
+        get { return cards.indices.filter { cards[$0].isRevealed }.oneAndOnly }
         
-        set {
-            for index in cards.indices {
-                cards[index].isRevealed = index == newValue
-            }
-        }
+        set { cards.indices.forEach { cards[$0].isRevealed = ($0 == newValue) } }
     }
     
     

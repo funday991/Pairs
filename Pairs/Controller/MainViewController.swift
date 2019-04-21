@@ -24,7 +24,7 @@ class MainViewController: UIViewController {
     private var availableEmojis: String!
     private var emojiForCard: CardEmoji!
     
-    private var numberOfPairs: Int {
+    var numberOfPairs: Int {
         return cardButtons.count / 2
     }
     

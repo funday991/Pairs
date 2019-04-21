@@ -52,9 +52,9 @@ extension MainViewController {
     }
 
     private func updateCardButtons() {
-        for index in cardButtons.indices {
-            let button = cardButtons[index]
-            let card = deck.cards[index]
+        cardButtons.indices.forEach {
+            let button = cardButtons[$0]
+            let card = deck.cards[$0]
             
             if card.isRevealed {
                 button.setTitle(getEmoji(for: card), for: .normal)
